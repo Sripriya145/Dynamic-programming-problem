@@ -1,1 +1,55 @@
+Example 1:
+
+Input: s = "bcbbbcba"
+
+Output: 4
+
+Explanation:
+
+The following substring has a length of 4 and contains at most two occurrences of each character: "bcbbbcba".
+Example 2:
+
+Input: s = "aaaa"
+
+Output: 2
+
+Explanation:
+
+The following substring has a length of 2 and contains at most two occurrences of each character: "aaaa".
+
+
+
+APPROACH 
+->sliding window
+
+Algorithm:
+1.declare left pointer point to 0 index
+2.declare map for calculate frequency of character
+3.declare for loop 0 to s.size()
+4. while contion ->>map[s[i]] count > 2:
+      map[s[left]]--;
+      left++;->>move to next char due to not satisfy condition (atmost 2 occurrence of char)
+5.find max of substring lenght max(len,i-left) i denote curent pointing char 
+6.return len;
+
+SOLUTION::
+  int maximumLengthSubstring(string s) 
+    {
+       int res=0,left=0;
+        unordered_map<char,int>m;
+        for(int i=0;i<s.size();i++)
+        {
+            m[s[i]]++;
+            while(m[s[i]]>2)
+            {
+                m[s[left]]--;
+                left++;
+            }
+            res=max(res,i-left+1);
+            
+        }
+        return res;
+    }
+
+
 
