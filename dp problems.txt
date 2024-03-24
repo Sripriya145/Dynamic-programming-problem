@@ -1,0 +1,159 @@
+LONGEST common SUBSEQUENCE
+dry code
+ if(str1[i-1]==atr2[j-1])
+    d[i][j]=1+d[i-1][j-1];
+ else
+   d[i][j]=max(d[i][j-1],d[i-1][j]);
+   
+   
+   main code using dp
+   initize the 1st row and col are zero
+    vector<vector<int>>dp(n+1,vector<int>(m+1));
+     for(int i=0;i<=n;i++)
+   {
+       for(int j=0;j<=m;j++)
+       {
+            if(i==0||j==0)
+           {
+               dp[i][j]=0;
+           }
+           else
+           {
+            if(str1[i-1]==str2[j-1])
+              dp[i][j]=1+dp[i-1][j-1];
+            else
+             dp[i][j]=max(dp[i][j-1],dp[i-1][j]);
+           }
+       }
+   }
+   cout<< dp[n][m];
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+LONGEST common SUBSTRING
+dry code
+if(str1[i-1]==atr2[j-1])
+    d[i][j]=1+d[i][j];
+    ans=max(dp[i][j],ans)
+else
+   d[i][j]=0;
+   
+   
+   
+  1 main code using dp
+   initize the 1st row and col are zero
+   vector<vector<int>>v(n+1,vector<int>(m+1));
+   for(int i=0;i<n;i++)
+   {
+       dp[0][i]=0
+   }
+   for(int i=0;i<m;i++)
+   {
+       dp[i][0]=0
+   }
+   for(int i=1;i<=n;i++)
+   {
+       for(int j=1;j<=m;j++)
+       {
+            if(str1[i-1]==str2[j-1])
+	    {
+            dp[i][j]=1+dp[i][j];
+             ans=max(dp[i][j],ans)
+            }		
+            else
+             dp[i][j]=0;
+       }
+   }
+   return ans;
+
+or we can use 2 vector individually
+|||||||||||||||||||||||||||||||||||||||||||||||||||->>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+   vector<int>cur(n+1,0),pre(m+1,0)
+  
+   for(int i=1;i<=n;i++)
+   {
+       for(int j=1;j<=m;j++)
+       {
+            if(str1[i-1]==str2[j-1])
+            cur[j]=1+pre[j-1];
+            ans=max(ans,cur[j])
+            else
+             cur[j]=0;
+       }
+       pre=cur;
+   }
+   return ans;
+
+
+-------------------------------------------------------------------
+LONGEST REPEATING SUBSEQUENCE
+ DRY RULE:
+	only 1 string in problem but compare twice
+
+
+    string str1;
+    cin>>str1;
+    int n=str1.size();
+    int m=str1.size();
+    
+  vector<vector<int>>dp(n+1,vector<int>(m+1));
+ 
+   for(int i=0;i<=n;i++)
+   {
+       for(int j=0;j<=m;j++)
+       {
+           if(i==0||j==0)
+           {
+               dp[i][j]=0;
+           }
+           else
+           {
+            if(str1[i-1]==str1[j-1]&&i!=j)
+                dp[i][j]=1+dp[i-1][j-1];
+            else
+               dp[i][j]=max(dp[i][j-1],dp[i-1][j]);
+           }
+       }
+   }
+   cout<< dp[n][m];
+
+
+---------------------------------------------------------------------
+LONGEST REPEACTING SUBSTRING (non-overlappping)
+
+ DRY RULE:
+	only 1 string in problem but compare twice
+
+
+    string str1;
+    cin>>str1;
+    int n=str1.size();
+    int m=str1.size();
+
+
+ vector<vector<int>>v(n+1,vector<int>(m+1));
+   for(int i=0;i<n;i++)
+   {
+       dp[0][i]=0
+   }
+   for(int i=0;i<m;i++)
+   {
+       dp[i][0]=0
+   }
+   for(int i=1;i<=n;i++)
+   {
+       for(int j=i+1;j<=m;j++)
+       {
+            if(str1[i-1]==str1[j-1]&&(j-1)>dp[i-1][j-1])
+	    {
+             dp[i][j]=1+dp[i][j];
+             ans=max(dp[i][j],ans)
+            }		
+            else
+             dp[i][j]=0;
+       }
+   }
+   return ans;
+
+
+
+
