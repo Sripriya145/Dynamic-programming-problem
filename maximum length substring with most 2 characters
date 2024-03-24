@@ -27,7 +27,7 @@ Algorithm:
 2.declare map for calculate frequency of character
 3.declare for loop 0 to s.size()
 4. while contion ->>map[s[i]] count > 2:
-      map[s[left]]--;
+      map[s[left]]--; //decrease char frequency due to count >2
       left++;->>move to next char due to not satisfy condition (atmost 2 occurrence of char)
 5.find max of substring lenght max(len,i-left) i denote curent pointing char 
 6.return len;
