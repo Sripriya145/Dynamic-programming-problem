@@ -1,3 +1,15 @@
+Approach:slinding window
+
+procedure:
+step1:
+initial start=0,c=0;
+logic is product<k ->count++
+        product >=k
+            remove start index "number"
+            check next number ->>start++
+            until product<k
+
+
 class Solution {
 public:
     int numSubarrayProductLessThanK(vector<int>& ar, int k) {
