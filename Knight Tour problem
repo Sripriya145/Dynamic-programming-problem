@@ -1,0 +1,80 @@
+
+import java.util.*;
+import java.lang.*;
+import java.text.*;
+class Main{
+    
+    public static void  printsol(int ar[][],int n)
+    {
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                System.out.print(ar[i][j]+" ");
+            }
+          System.out.println();
+        }
+    }
+    
+    
+    public  static boolean issafe(int sol[][],int i,int j,int n)
+    {
+        if(i>=0&&i<n&&j>=0&&j<n&&sol[i][j]==-1)
+        return true;
+        
+        return false;
+    }
+public static  boolean findtour(int i,int j,int val,int sol[][],int xnext[],int ynext[],int n)
+{
+    
+    if(val==n*n)
+    {
+        return true;
+    }
+    for (int k=0;k<n;k++)
+    {
+        int next_i=i+xnext[k];
+        int next_j=j+ynext[k];
+        if(issafe(sol,next_i,next_j,n))
+        {
+            sol[next_i][next_j]=val;
+            if(findtour(next_i,next_j,val+1,sol,xnext,ynext,n))
+            {
+                return true;
+            }
+            else{
+                sol[next_i][next_j]=-1;
+            }
+        }
+    }
+    return false;
+}
+public  static void starttour(int n)
+{
+    int xnext[]={2,1,-1,-2,-2,-1,1,2};
+    int ynext[]={1,2,2,1,-1,-2,-2,-1};
+    int sol[][]=new int[n][n];
+     for(int i=0;i<n;i++)
+     {
+         for(int j=0;j<n;j++)
+         {
+             sol[i][j]=-1;
+         }
+     }
+     sol[0][0]=0;
+    if(findtour(0,0,1,sol,xnext,ynext,n))
+    {
+        printsol(sol,n);
+    }
+    else
+    {
+       System.out.println("Solution not exist");
+        return ;
+    }
+}
+    public static void main(String[] qw)
+    {
+        int n=8;
+        starttour(n);
+    }
+}
