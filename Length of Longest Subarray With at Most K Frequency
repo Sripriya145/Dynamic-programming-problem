@@ -1,0 +1,22 @@
+Appoarch:  slidding window
+
+code:
+class Solution {
+public:
+    int maxSubarrayLength(vector<int>& nums, int k) {
+         unordered_map<int,int>m;
+        int ans=0,n=nums.size();
+        int start=0;
+        for(int end=0;end<n;end++)
+        {
+            m[nums[end]]++;
+            while(m[nums[end]]>k)
+            {
+                m[nums[start]]--;
+                start++;
+            } 
+            ans=max(ans,(end-start)+1);
+        }
+        return ans;
+    }
+};
