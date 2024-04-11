@@ -145,7 +145,7 @@ LONGEST REPEACTING SUBSTRING (non-overlappping)
        {
             if(str1[i-1]==str1[j-1]&&(j-1)>dp[i-1][j-1])
 	    {
-             dp[i][j]=1+dp[i][j];
+             dp[i][j]=1+dp[i-1][j-1];
              ans=max(dp[i][j],ans)
             }		
             else
