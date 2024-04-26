@@ -8,7 +8,9 @@ Input: S = “BBABCBCAB”
 Output: 7
 Explanation: As “BABCBAB” is the longest palindromic subsequence in it. “BBBBB” and “BBCBB” are also palindromic subsequences of the given sequence, but not the longest ones.
 
-using recursion ->>>>>>>>>>>
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+using recursion (print length of longest string)
+
 #include<iostream>
 using namespace std;
 int longestpalindromesubsequense(string s,int start,int end)
@@ -27,6 +29,41 @@ int longestpalindromesubsequense(string s,int start,int end)
     int b=longestpalindromesubsequense(s,start,end-1);
     
     return max(a,b);
+    
+}
+int main()
+{
+    string s;
+    cin>>s;
+    cout<<longestpalindromesubsequense(s,0,s.size()-1);
+}
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+using recursion -(pring longest sequence string)
+
+#include<iostream>
+using namespace std;
+string longestpalindromesubsequense(string s,int start,int end)
+{
+    if(start>end)
+    {
+        return "";
+    }
+    if(start==end)
+    {
+         return s.substr(start,1);
+    }
+    
+    if(s[start]==s[end])
+    {
+       
+       return s[start]+longestpalindromesubsequense(s,start+1,end-1)+s[end];
+    }
+       
+    string a=longestpalindromesubsequense(s,start+1,end);
+
+    string b=longestpalindromesubsequense(s,start,end-1);
+    
+    return a.size()>b.size()?a:b;
     
 }
 int main()
