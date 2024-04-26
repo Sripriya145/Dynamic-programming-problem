@@ -1,0 +1,37 @@
+
+Given a string ‘S’, find the length of the Longest Palindromic Subsequence in it.
+Input: S = “GEEKSFORGEEKS”
+Output: 5
+Explanation: The longest palindromic subsequence we can get is of length 5. There are more than 1 palindromic subsequences of length 5, for example: EEKEE, EESEE, EEFEE, …etc.
+
+Input: S = “BBABCBCAB”
+Output: 7
+Explanation: As “BABCBAB” is the longest palindromic subsequence in it. “BBBBB” and “BBCBB” are also palindromic subsequences of the given sequence, but not the longest ones.
+
+using recursion ->>>>>>>>>>>
+#include<iostream>
+using namespace std;
+int longestpalindromesubsequense(string s,int start,int end)
+{
+    if(start>end)
+    {
+        return 0;
+    }
+    if(start==end)
+    return 1;
+    
+    if(s[start]==s[end])
+       return 2+longestpalindromesubsequense(s,start+1,end-1);
+       
+    int a=longestpalindromesubsequense(s,start+1,end);
+    int b=longestpalindromesubsequense(s,start,end-1);
+    
+    return max(a,b);
+    
+}
+int main()
+{
+    string s;
+    cin>>s;
+    cout<<longestpalindromesubsequense(s,0,s.size()-1);
+}
